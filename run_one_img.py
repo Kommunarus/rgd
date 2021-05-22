@@ -10,6 +10,7 @@ from torchvision.io import read_image
 import torchvision.transforms as transforms
 import open3d as o3d
 import os
+from task1and2 import primary as open2d
 
 import json
 
@@ -74,14 +75,29 @@ def primary(path_depth, usegpu, PATH):
     doorsdict = {0:'OPEN', 1:'SEMI', 2:'CLOSED', 3:'UNKNOWN'}
     doorsdict2 = {0:'UNKNOWN', 1:'human', 2:'wear', 3:'limb', 4:'other'}
 
+    bbox, shirina = open2d(path_depth)
+    print(bbox)
+    print(shirina)
 
-    data = {'figures':[
-        {"object":doorsdict2[predicted2.cpu().item()] ,
-         "geometry":{},
-         "door":doorsdict[predicted1.cpu().item()]
-         }
-    ]
-    }
+    if len(bbox)>0:
+        data = {'figures':[
+            {"object":doorsdict2[predicted2.cpu().item()] ,
+             "geometry":{'position':{'x':bbox[0][0],'y':bbox[0][1],'z':bbox[0][2] },
+                         'rotation':{'x':0, 'y':0, 'z':0},
+                         'dimensions':{'x':shirina[0][0],'y':shirina[0][1],'z':shirina[0][2] }},
+             "door":doorsdict[predicted1.cpu().item()]
+             }
+        ]
+        }
+    else:
+        data = {'figures':[
+            {"object":doorsdict2[predicted2.cpu().item()] ,
+             "geometry":{'position':{}, 'rotation':{}, 'dimensions':''},
+             "door":doorsdict[predicted1.cpu().item()]
+             }
+        ]
+        }
+
     with open('/home/neptun/Документы/Хакатон/network/train/js/'+path_depth.split(sep='/')[-1]+'.json', 'w') as f:
         json.dump(data, f)
 
