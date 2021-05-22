@@ -6,7 +6,7 @@ import torch.optim as optim
 import numpy as np
 import torchvision
 import argparse
-
+import json
 
 from unit import CustomImageDataset
 from unit import Net
@@ -52,6 +52,23 @@ def primary(dir, usegpu, PATH):
     print('GroundTruth 3: ', ' '.join('%5s' % l3[j].cpu().item() for j in range(len(testloader.dataset))))
     print('Predicted   3: ', ' '.join('%5s' % predicted3[j].cpu().item()
                                   for j in range(len(testloader.dataset))))
+
+    doorsdict = {0:'OPEN', 1:'SEMI', 2:'CLOSED', 3:'UNKNOWN'}
+    doorsdict2 = {1:'human', 0:'other'}
+
+    for i, sttest in enumerate(testing_data.label):
+        data = {'figures':[
+            {"object":doorsdict2[predicted2[i].cpu().item()] ,
+             "geometry":{},
+             "door":doorsdict[predicted1[i].cpu().item()]
+             }
+        ]
+        }
+        namef = sttest.split(sep='\t')[0]
+        with open('./js/'+namef+'.json', 'w') as f:
+            json.dump(data, f)
+
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
