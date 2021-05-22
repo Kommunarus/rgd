@@ -4,7 +4,7 @@
 dataset.py - препроцессинг облаков  <br/> 
 unit.py- даталоадер и сеть  <br/> 
 script1.py - обучение <br/> 
-eval_dataset.py - тест <br/> 
+eval_dataset.py и run_one_img.py - тест <br/> 
 
 сеть выдает
 1. степень открытия двери
