@@ -36,4 +36,4 @@ Process finished with exit code 0
 P.S. архив без датасетов (оставил по одной картинке) находится [здесь](https://drive.google.com/file/d/1SZy-ThDf_sLuwfd55Xl0WR9O0LOi54w2/view?usp=sharing)
 
 
-Тестовое задание было сделано с помощью скрипта testtest.py. Находитcя в папке network/train
+Тестовое задание было сделано с помощью скрипта testtest.py. Положить в папку network/train
