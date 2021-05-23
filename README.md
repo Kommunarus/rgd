@@ -33,7 +33,7 @@ Process finished with exit code 0
 {"figures": [{"object": "human", "geometry": {"position": {"x": 0.44782608695652176, "y": 0.67, "z": 1.0}, "rotation": {"x": 0, "y": 0, "z": 0}, "dimensions": {"x": 0.15217391304347827, "y": 0.014285714285714285, "z": 1}}, "door": "CLOSED"}]}
 
 
-P.S. архив без датасетов (оставил по одной картинке) находится [здесь](https://drive.google.com/file/d/1SZy-ThDf_sLuwfd55Xl0WR9O0LOi54w2/view?usp=sharing)
+P.S. архив без датасетов (оставил по одной картинке) находится [здесь](https://disk.yandex.ru/d/MjH0SMU9OfMAuQ)
 
 
 Тестовое задание было сделано с помощью скрипта testtest.py. Положить в папку network/train
